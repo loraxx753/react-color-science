@@ -1,6 +1,5 @@
 import React from 'react'
 import { Heading, Card, Canvas } from 'Components/Primitives'
-import Color from 'color'
 import ft from 'fourier-transform'
 import SineWaves from 'sine-waves'
 

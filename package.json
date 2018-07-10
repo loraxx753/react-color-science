@@ -9,7 +9,6 @@
     "color-space": "^1.16.0",
     "decibels": "^2.0.0",
     "fourier-transform": "^1.1.2",
-    "gl-spectrum": "^3.2.6",
     "mathjs": "^5.0.2",
     "react": "^16.4.1",
     "react-color": "^2.14.1",
