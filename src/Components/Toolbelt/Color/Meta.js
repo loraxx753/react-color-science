@@ -14,7 +14,6 @@ import {
 import { capitalize } from 'utilities'
 import Color from 'color'
 import math from 'mathjs'
-import ColorSpectrum from 'color-spectrum'
 import ft from 'fourier-transform'
 import { default as GlSpectrum } from 'gl-spectrum'
 import Wavelength from './Wavelength'

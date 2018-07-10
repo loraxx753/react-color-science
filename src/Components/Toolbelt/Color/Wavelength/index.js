@@ -1,7 +1,6 @@
 import React from 'react'
 import { Heading, Card, Canvas } from 'Components/Primitives'
 import Color from 'color'
-import ColorSpectrum from 'color-spectrum'
 import ft from 'fourier-transform'
 import SineWaves from 'sine-waves'
 
@@ -133,15 +132,8 @@ export default class extends React.Component {
   render () {
     return (
       <Card>
-        <Heading>Wavelength Information</Heading>
-        <p>Nanometers: </p>
-        <Canvas id={'waves'} />
-        <p>
-          RGB:
-          {' '}
-          {JSON.stringify(Color(ColorSpectrum(this.state.spectrum)), null, 2)}
-        </p>
-
+        <Heading style={{ textAlign: 'center' }}>Wavelength</Heading>
+        <Canvas id={'waves'} style={{ width: '100%' }} />
       </Card>
     )
   }
