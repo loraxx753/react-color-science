@@ -6,16 +6,11 @@ import {
   Box,
   Subhead,
   Row,
-  Column,
-  Card,
-  Debug,
-  Text
+  Column
 } from 'Components/Primitives'
 import { capitalize } from 'utilities'
 import Color from 'color'
 import math from 'mathjs'
-import ft from 'fourier-transform'
-import { default as GlSpectrum } from 'gl-spectrum'
 import Wavelength from './Wavelength'
 
 const round = num => math.round(num, 2)
