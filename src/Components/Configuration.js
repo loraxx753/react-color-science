@@ -15,7 +15,6 @@ class Provider extends React.Component {
         this.setState({
           ...stateCopy
         })
-        console.log(this.state)
       }
     }
   }
