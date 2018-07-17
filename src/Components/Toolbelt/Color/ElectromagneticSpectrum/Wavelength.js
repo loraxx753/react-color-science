@@ -1,9 +1,8 @@
 import React from 'react'
-import { Heading, Card, Canvas } from 'Components/Primitives'
+import { Heading, Card, Canvas } from 'Primitives'
 // import ft from 'fourier-transform'
 import SineWaves from 'sine-waves'
 import { goldenRatio } from 'utilities'
-import Color from 'color'
 
 // This'll be useful later
 // const amplitudeMultiplier = props.color.hsl().object().s / 100
@@ -61,7 +60,7 @@ export default class extends React.Component {
         // An array of wave options
         waves: [
           {
-            timeModifier: 10 * timeMultiplier, // This is multiplied againse `speed`
+            timeModifier: timeMultiplier * goldenRatio * 10, // This is multiplied againse `speed`
             lineWidth: 1, // Stroke width
             amplitude: 250 * amplitudeMultiplier, // How tall is the wave
             wavelength: hue, // How long is the wave
@@ -78,11 +77,11 @@ export default class extends React.Component {
           var gradient = this.ctx.createLinearGradient(0, 0, this.width, 0)
           gradient.addColorStop(0, 'rgba(255, 255, 255, 0)')
           gradient.addColorStop(
-            0.2,
+            0.25,
             `hsla(${hue}, ${amplitudeMultiplier * 100}%, ${timeMultiplier * 100}%, 1)`
           )
           gradient.addColorStop(
-            0.8,
+            0.75,
             `hsla(${hue}, ${amplitudeMultiplier * 100}%, ${timeMultiplier * 100}%, 1)`
           )
           gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')
@@ -102,7 +101,7 @@ export default class extends React.Component {
 
   render () {
     return (
-      <Card bg={this.state.color.isDark() ? 'white' : 'gray'}>
+      <Card bg={'white'}>
         <Heading style={{ textAlign: 'center' }}>Wavelength</Heading>
         <Canvas id={'waves'} style={{ width: '100%' }} />
       </Card>

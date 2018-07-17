@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pre, Code } from 'Components/Primitives'
+import { Pre, Code } from 'Primitives'
 
 export default props => (
   <React.Fragment>

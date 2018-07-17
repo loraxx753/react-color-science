@@ -1,7 +1,7 @@
 import React from 'react'
 
 import * as Rebass from 'rebass'
-import { dashToPascal } from '../../utilities'
+import { dashToPascal } from 'utilities'
 import { default as PrimitiveLine } from './Line'
 import { default as PrimitiveDebug } from './Debug'
 import styled from 'styled-components'
@@ -31,6 +31,9 @@ export const DarkMode = primitives.DarkMode || Rebass.DarkMode
 export const Debug = PrimitiveDebug
 export const Grid = PrimitiveGrid
 export const Canvas = props => <canvas {...props}>{props.children}</canvas>
+export const ListItem = props => <li {...props}>{props.children}</li>
+export const List = props =>
+  primitives.List || <ul {...props}>{props.children}</ul>
 
 export const Absolute = primitives.Absolute || Rebass.Absolute
 export const Arrow = primitives.Arrow || Rebass.Arrow
@@ -71,7 +74,6 @@ export const Heading = primitives.Heading || Rebass.Heading
 export const Image = primitives.Image || Rebass.Image
 export const Input = primitives.Input || Rebass.Input
 export const Label = primitives.Label || Rebass.Label
-export const List = primitives.List || Rebass.List
 export const Lead = primitives.Lead || Rebass.Lead
 export const Link = primitives.Link || Rebass.Link
 export const Measure = primitives.Measure || Rebass.Measure

@@ -2,12 +2,12 @@ import React from 'react'
 import Color from 'Components/Toolbelt/Color'
 // import { Swatches, Meta } from 'Components/Toolbelt/Color'
 import { Consumer as Configuration } from 'Components/Configuration'
-import { Drawer, Slider, Text, Row, Box } from 'Components/Primitives'
+import { Drawer, Slider, Row, Box } from 'Primitives'
 
 import { default as ColorProcessor } from 'color'
 
 // wavelength = 620 - 170 / 270 * hueDegrees
-export default class Dashboard extends React.Component {
+export default class Light extends React.Component {
   constructor (props) {
     super(props)
     this.state = {

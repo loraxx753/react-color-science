@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import { Provider as RebassProvider } from './Components/Primitives'
+import { Provider as RebassProvider } from './Primitives'
 import {
   Provider as ConfigurationProvider,
   Consumer as ConfigurationConsumer

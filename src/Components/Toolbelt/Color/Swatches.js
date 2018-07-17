@@ -1,7 +1,7 @@
 import React from 'react'
 import Color from 'color'
 import namer from 'color-namer'
-import { Text, Badge, Heading, Debug, Grid } from 'Components/Primitives'
+import { Text, Badge, Heading, Debug, Grid } from 'Primitives'
 import { capitalize, ObjectMap } from 'utilities'
 
 export default props => {

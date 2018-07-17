@@ -1,13 +1,5 @@
 import React from 'react'
-import {
-  Heading,
-  Panel,
-  Grid,
-  Box,
-  Subhead,
-  Row,
-  Column
-} from 'Components/Primitives'
+import { Heading, Panel, Grid, Box, Subhead, Row, Column } from 'Primitives'
 import { capitalize } from 'utilities'
 import Color from 'color'
 import math from 'mathjs'

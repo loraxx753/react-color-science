@@ -1,6 +1,5 @@
 import React from 'react'
-import Matter from 'Components/Dashboard/Matter'
-import { Container } from 'Components/Primitives'
-import Dashboard from './Components/Dashboard'
+import { Container } from 'Primitives'
+import Dashboard from './Composites/Dashboard'
 
 export default props => <Container><Dashboard /></Container>

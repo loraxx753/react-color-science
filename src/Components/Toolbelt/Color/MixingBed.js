@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Subhead } from 'Components/Primitives'
+import { Heading, Subhead } from 'Primitives'
 import { ObjectMap, capitalize } from 'utilities'
 
 export default props => (

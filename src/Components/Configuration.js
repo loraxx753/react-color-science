@@ -1,5 +1,4 @@
 import React from 'react'
-import Color from 'color'
 import { theme } from '../config/'
 
 const Context = React.createContext({})

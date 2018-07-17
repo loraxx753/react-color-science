@@ -6,6 +6,9 @@
 # testing
 /coverage
 
+# private config
+src/config/ignored.js
+
 # production
 /build
 

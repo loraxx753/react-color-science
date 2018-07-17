@@ -1,6 +1,8 @@
 import Color from 'color'
+import ignored from './ignored'
 
 export const theme = {
+  ignored,
   colors: {
     dark: Color('black').rgb().toString(),
     light: Color('white').rgb().toString(),
