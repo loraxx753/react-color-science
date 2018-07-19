@@ -14,7 +14,9 @@ import namer from 'color-namer'
 import * as space from 'color-space'
 
 import math from 'mathjs'
-import ElectromagneticSpectrum, { Wavelength } from './ElectromagneticSpectrum'
+import ElectromagneticSpectrum, {
+  Wavelength
+} from 'Components/ElectromagneticSpectrum'
 import Names from './Names'
 import { capitalize } from 'utilities'
 
