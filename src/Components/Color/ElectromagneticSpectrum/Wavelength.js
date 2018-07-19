@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, Card, Canvas } from 'Primitives'
+import { Heading, Card, Canvas, Subhead } from 'Primitives'
 // import ft from 'fourier-transform'
 import SineWaves from 'sine-waves'
 import { goldenRatio } from 'utilities'
@@ -49,7 +49,7 @@ export default class extends React.Component {
         // Canvas Element
         el: document.getElementById('waves'),
         // General speed of entire wave system
-        speed: 2 ** 3,
+        speed: 40 * timeMultiplier,
         // How many degress should we rotate all of the waves
         rotate: 0,
         // Ease function from left to right
@@ -62,9 +62,9 @@ export default class extends React.Component {
           {
             timeModifier: timeMultiplier * goldenRatio * 10, // This is multiplied againse `speed`
             lineWidth: 1, // Stroke width
-            amplitude: 250 * amplitudeMultiplier, // How tall is the wave
-            wavelength: hue, // How long is the wave
-            segmentLength: goldenRatio * 2, // How smooth should the line be
+            amplitude: 150 * amplitudeMultiplier, // How tall is the wave
+            wavelength: Math.abs(goldenRatio * (hue - 270)), // How long is the wave
+            segmentLength: 2, // How smooth should the line be
             strokeStyle: this.state.color.hsl(), // Stroke color and opacity
             type: 'sine' // Wave type
           }
@@ -101,14 +101,14 @@ export default class extends React.Component {
 
   render () {
     return (
-      <Card bg={'white'}>
-        <Heading style={{ textAlign: 'center' }}>Wavelength</Heading>
-        <Canvas id={'waves'} style={{ width: '100%' }} />
-      </Card>
+      <React.Fragment>
+        {this.props.children}
+        <Card bg={'white'}>
+          <Subhead>Wavelength</Subhead>
+          <Canvas id={'waves'} style={{ width: '100%' }} />
+        </Card>
+
+      </React.Fragment>
     )
   }
-}
-
-export const ColorToWaveLength = props => {
-  return props.children('there')
 }

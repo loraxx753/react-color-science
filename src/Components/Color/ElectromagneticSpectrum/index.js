@@ -20,7 +20,10 @@ import Wavelength from './Wavelength'
 export default class extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    let { color } = props
+    this.state = {
+      color
+    }
   }
 
   render () {

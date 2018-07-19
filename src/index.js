@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import { Provider as RebassProvider } from './Primitives'
+import { Provider as RebassProvider } from 'Primitives'
 import {
   Provider as ConfigurationProvider,
   Consumer as ConfigurationConsumer
-} from './Components/Configuration'
+} from 'Primitives/Configuration'
 import { injectGlobal } from 'styled-components'
 
 injectGlobal`
