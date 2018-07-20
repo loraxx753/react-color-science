@@ -16,4 +16,4 @@ This app uses [Styleguideist](https://github.com/styleguidist/react-styleguidist
 
 This app also includes [surge.sh](http://surge.sh/) in its devDependencies. The easiest way to deploy a production version is to run `npm run deploy` and follow the instructions in the cli.
 
-You can use [surge.sh](http://surge.sh/) as a [free](https://surge.sh/help/why-is-surge-free) production host by [remembering the domain name](http://surge.sh/help/remembering-a-domain) or by using your own [unique custom domain](http://surge.sh/help/adding-a-custom-domain) is to follow the instructions for  after you 
+You can use [surge.sh](http://surge.sh/) as a [free](https://surge.sh/help/why-is-surge-free) production host by [remembering the domain name](http://surge.sh/help/remembering-a-domain) or by using your own [unique custom domain](http://surge.sh/help/adding-a-custom-domain).
