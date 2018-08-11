@@ -56,7 +56,6 @@ export class Swatch extends React.Component {
   roundIfNumber (val) {}
 
   debugIfObject (val) {
-    console.log(typeof val)
     return val
   }
 

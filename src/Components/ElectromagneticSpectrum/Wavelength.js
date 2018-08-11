@@ -1,8 +1,12 @@
 import React from 'react'
-import { Heading, Card, Canvas, Subhead } from 'Primitives'
+import { Card, Canvas, Subhead } from 'Primitives'
 // import ft from 'fourier-transform'
 import SineWaves from 'sine-waves'
 import { goldenRatio } from 'utilities'
+// import math from 'mathjs'
+// import space from 'color-space'
+// import Color from 'color'
+import * as chromatism from 'chromatism'
 
 // This'll be useful later
 // const amplitudeMultiplier = props.color.hsl().object().s / 100
@@ -31,7 +35,9 @@ export default class extends React.Component {
     super(props)
     this.state = {
       color: props.color,
-      sinewaves: {}
+      sinewaves: {},
+      wavelength: '',
+      cie: {}
     }
   }
 
@@ -43,8 +49,15 @@ export default class extends React.Component {
     const amplitudeMultiplier = color.hsl().object().s / 100
     const timeMultiplier = color.hsl().object().l / 100
     const hue = color.hsl().object().h
+    const wavelength = {
+      value: hue,
+      magnitude: 'nm'
+    }
+    const cielab = chromatism.convert(color.hsl().object()).cielab
 
     this.setState({
+      wavelength,
+      cielab,
       sinewaves: new SineWaves({
         // Canvas Element
         el: document.getElementById('waves'),
@@ -63,7 +76,7 @@ export default class extends React.Component {
             timeModifier: timeMultiplier * goldenRatio * 10, // This is multiplied againse `speed`
             lineWidth: 1, // Stroke width
             amplitude: 150 * amplitudeMultiplier, // How tall is the wave
-            wavelength: Math.abs(goldenRatio * (hue - 270)), // How long is the wave
+            wavelength: wavelength.value, // How long is the wave
             segmentLength: 2, // How smooth should the line be
             strokeStyle: this.state.color.hsl(), // Stroke color and opacity
             type: 'sine' // Wave type
@@ -105,6 +118,15 @@ export default class extends React.Component {
         {this.props.children}
         <Card bg={'white'}>
           <Subhead>Wavelength</Subhead>
+          {/* <Text>
+            Lightness: {this.state.cielab ? this.state.cielab.L : ''}
+          </Text>
+          <Text>
+            A Channel: {this.state.cielab ? this.state.cielab.a : ''}
+          </Text>
+          <Text>
+            B Channel: {this.state.cielab ? this.state.cielab.b : ''}
+          </Text> */}
           <Canvas id={'waves'} style={{ width: '100%' }} />
         </Card>
 

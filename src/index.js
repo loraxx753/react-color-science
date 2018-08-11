@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import { Provider as RebassProvider } from 'Primitives'
+import { Provider } from 'Primitives'
 import {
   Provider as ConfigurationProvider,
   Consumer as ConfigurationConsumer
@@ -11,18 +11,18 @@ import { injectGlobal } from 'styled-components'
 
 injectGlobal`
   * { box-sizing: border-box; }
-  body { 
-    margin: 0; 
-  }
+  body { margin: 0; }
 `
 
 ReactDOM.render(
   <ConfigurationProvider>
     <ConfigurationConsumer>
       {config => (
-        <RebassProvider theme={config.theme}>
-          <App />
-        </RebassProvider>
+        <Provider.Rebass theme={config.theme}>
+          <Provider.Primitives>
+            <App />
+          </Provider.Primitives>
+        </Provider.Rebass>
       )}
     </ConfigurationConsumer>
   </ConfigurationProvider>,

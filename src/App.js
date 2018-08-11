@@ -1,5 +1,5 @@
 import React from 'react'
 import { Container } from 'Primitives'
-import Dashboard from './Composites/Dashboard'
+import Composites from 'Composites'
 
-export default props => <Container><Dashboard /></Container>
+export default props => <Container><Composites /></Container>

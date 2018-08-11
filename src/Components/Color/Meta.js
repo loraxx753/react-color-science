@@ -11,7 +11,7 @@ import {
 } from 'Primitives'
 import Color from 'color'
 import namer from 'color-namer'
-import * as space from 'color-space'
+// import * as space from 'color-space'
 
 import math from 'mathjs'
 import ElectromagneticSpectrum, {
@@ -25,7 +25,6 @@ const round = num => math.round(num, 2)
 export default props => {
   const color = Color.hsl(props.color)
   const names = namer(props.color)
-  console.log(space)
 
   return (
     <Div style={{ maxWidth: '1024px' }}>

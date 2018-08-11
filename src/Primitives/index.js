@@ -1,9 +1,15 @@
 import React from 'react'
 
 import * as Rebass from 'rebass'
+import PrimitiveOperators from './Operators'
+import {
+  Consumer as PrimitiveConsumer,
+  Provider as PrimitiveProvider
+} from './ContextProvider'
 import { dashToPascal } from 'utilities'
 import { default as PrimitiveLine } from './Line'
 import { default as PrimitiveDebug } from './Debug'
+import { default as PrimitiveColorPicker } from './ColorPicker'
 import styled from 'styled-components'
 import { default as PrimitiveGrid } from 'styled-components-grid'
 
@@ -34,7 +40,14 @@ export const Canvas = props => <canvas {...props}>{props.children}</canvas>
 export const ListItem = props => <li {...props}>{props.children}</li>
 export const List = props =>
   primitives.List || <ul {...props}>{props.children}</ul>
-
+export const Operators = PrimitiveOperators
+export const ColorPicker = PrimitiveColorPicker
+export const Consumer = {
+  Primitives: PrimitiveConsumer
+}
+/**
+ * Exports from Rebass
+ */
 export const Absolute = primitives.Absolute || Rebass.Absolute
 export const Arrow = primitives.Arrow || Rebass.Arrow
 export const Avatar = primitives.Avatar || Rebass.Avatar
@@ -85,7 +98,10 @@ export const Panel = primitives.Panel || Rebass.Panel
 export const Position = primitives.Position || Rebass.Position
 export const Pre = primitives.Pre || Rebass.Pre
 export const Progress = primitives.Progress || Rebass.Progress
-export const Provider = Rebass.Provider
+export const Provider = {
+  Rebass: Rebass.Provider,
+  Primitives: PrimitiveProvider
+}
 export const Radio = primitives.Radio || Rebass.Radio
 export const Relative = primitives.Relative || Rebass.Relative
 export const Root = primitives.Root || Rebass.Root

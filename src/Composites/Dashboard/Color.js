@@ -1,139 +1,198 @@
 import React from 'react'
-import { default as ColorComponent } from 'Components/Color'
-import { Row, Column, Box } from 'Primitives'
-import { default as ColorMixer } from 'color'
-import Slider from 'rc-slider'
-import 'rc-slider/assets/index.css'
+import chroma from 'chroma-js'
+import namer from 'color-namer'
+import Mousetrap from 'mousetrap'
+import {
+  Debug,
+  Column,
+  Row,
+  ColorPicker,
+  Consumer,
+  Box,
+  Card,
+  BackgroundImage,
+  Subhead,
+  Small,
+  Progress,
+  Divider,
+  List,
+  ListItem,
+  Button,
+  Drawer
+} from 'Primitives'
+// http://casesandberg.github.io/react-color/
+import {
+  AlphaPicker,
+  BlockPicker,
+  ChromePicker,
+  CirclePicker,
+  CompactPicker,
+  GithubPicker,
+  HuePicker,
+  MaterialPicker,
+  PhotoshopPicker,
+  SketchPicker,
+  SliderPicker,
+  SwatchesPicker,
+  TwitterPicker
+} from 'react-color'
+import { Heading, Text, Caps } from 'Primitives'
 
 export default class extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      color: ColorMixer(`hsl(0,100%,50%)`),
-      hue: props.hue || 0,
-      saturation: props.saturation || 100,
-      lightness: props.lightness || 50
-    }
-    this.handleHueChange.bind(this)
+  state = {
+    color: '#fff',
+    openDrawers: false
   }
-  remixColor = () => {
-    this.setState({
-      color: ColorMixer(
-        `hsl(${this.state.hue}, ${this.state.saturation}%, ${this.state.lightness}%)`
-      )
+  componentDidMount = () => {
+    Mousetrap.bind('up up down down left right left right b a enter', () => {
+      console.log('konami code')
+    })
+    Mousetrap.bind('command+j', () => {
+      this.setState({
+        openDrawers: !this.state.openDrawers
+      })
     })
   }
 
-  handleHueChange = hue => {
-    this.setState({
-      hue
-    })
-    this.remixColor()
-  }
+  render = () => (
+    <Consumer.Primitives>
+      {primitives => {
+        const color = {
+          chroma: chroma(primitives.color),
+          names: namer(primitives.color)
+        }
+        return (
+          <React.Fragment>
+            <Heading>Color Picker</Heading>
 
-  handleSaturationChange = saturation => {
-    this.setState({
-      saturation
-    })
-    this.remixColor()
-  }
-  handleLightnessChange = lightness => {
-    this.setState({
-      lightness
-    })
-    this.remixColor()
-  }
+            <ColorPicker
+              types={[
+                // AlphaPicker,
+                // BlockPicker,
+                // ChromePicker,
+                // CirclePicker,
+                // CompactPicker
+                // GithubPicker,
+                // HuePicker,
+                // MaterialPicker,
+                // PhotoshopPicker,
+                // SketchPicker
+                // SliderPicker,
+                // SwatchesPicker
+                // TwitterPicker
+              ]}
+            />
 
-  render () {
-    return (
-      <React.Fragment>
-        <Row>
-          <Column>
-            <Box p={4}>
-              Hue ({this.state.color.hsl().hue().toString()}°)<Slider
-                onChange={this.handleHueChange}
-                defaultValue={0}
-                min={0}
-                max={269}
-                trackStyle={{
-                  backgroundColor: this.state.color.rotate(-15).hsl().string(),
-                  height: 10
-                }}
-                handleStyle={{
-                  borderColor: this.state.color.negate().hsl().string(),
-                  height: 18,
-                  width: 18,
-                  backgroundColor: this.state.color.hsl().string()
-                }}
-                railStyle={{
-                  backgroundColor: this.state.color.rotate(15).hsl().string(),
-                  height: 10
-                }}
-              />
-              Saturation (
-              {this.state.color.hsl().saturationl().toString()}
-              %)
-              <Slider
-                onChange={this.handleSaturationChange}
-                defaultValue={100}
-                min={0}
-                max={100}
-                trackStyle={{
-                  borderColor: 'blue',
-                  backgroundColor: this.state.color
-                    .desaturate(0.5)
-                    .hsl()
-                    .string(),
-                  height: 10
-                }}
-                handleStyle={{
-                  borderColor: 'blue',
-                  height: 18,
-                  width: 18,
-                  backgroundColor: this.state.color.hsl().string()
-                }}
-                railStyle={{
-                  borderColor: 'blue',
-                  backgroundColor: this.state.color
-                    .saturate(0.5)
-                    .hsl()
-                    .string(),
-                  height: 10
-                }}
-              />
-              Lightness (
-              {this.state.color.hsl().lightness().toString()}
-              %)
-              <Slider
-                onChange={this.handleLightnessChange}
-                defaultValue={50}
-                min={0}
-                max={100}
-                trackStyle={{
-                  borderColor: 'blue',
+            <Drawer
+              open={this.state.openDrawers}
+              side='right'
+              p={3}
+              color='black'
+              bg='white'
+            >
+              <Heading>{color.names.pantone.shift().name}</Heading>
+              <General color={color} />
+            </Drawer>
 
-                  backgroundColor: this.state.color.darken(0.3).hsl().string(),
-                  height: 10
-                }}
-                handleStyle={{
-                  borderColor: 'blue',
-                  height: 18,
-                  width: 18,
-                  backgroundColor: this.state.color.hsl().string()
-                }}
-                railStyle={{
-                  backgroundColor: this.state.color.lighten(0.3).hsl().string(),
-                  height: 10
-                }}
-              />
-            </Box>
-          </Column>
-          <Column>
-            <ColorComponent.Meta color={this.state.color.hsl().string()} />
+          </React.Fragment>
+        )
+      }}
 
-          </Column>
-        </Row>
-      </React.Fragment>
-    )
-  }
+    </Consumer.Primitives>
+  )
+}
+/**
+ *
+ * @param {http://gka.github.io/chroma.js/} color
+ */
+const General = ({ color }) => {
+  return (
+    <Box width={256}>
+      <Card>
+        <BackgroundImage style={{ backgroundColor: color.chroma.hex() }} />
+        <Box p={2}>
+          <Subhead>{color.chroma.hex()}</Subhead>
+          <Button>Darken</Button>
+        </Box>
+        <Divider w={1} borderColor='blue' />
+        <Box p={2} />
+        {/* <Box p={2}>
+          <Subhead>{'Swatches'}</Subhead>
+          {color.chroma.rgb().map((value, i) => {
+            return (
+              <React.Fragment>
+                <Subhead>RGB</Subhead>
+
+                <Text>
+                  <Progress value={value} color={['red', 'green', 'blue'][i]} />
+                  <Small key={i}>{'RGB'[i]}{value}</Small>
+                </Text>
+              </React.Fragment>
+            )
+          })}
+        </Box> */}
+      </Card>
+    </Box>
+  )
+}
+
+/**
+ *
+ * @param {http://gka.github.io/chroma.js/} color
+ */
+const OldGeneral = ({ color }) => {
+  return (
+    <Box width={256}>
+      <Card>
+        <BackgroundImage style={{ backgroundColor: color.chroma.hex() }} />
+        <Box p={2}>
+          {color.chroma.cmyk().map((value, i) => {
+            const primaries = ['cyan', 'magenta', 'yellow']
+            return (
+              <React.Fragment>
+                <Subhead>{primaries[i]}</Subhead>
+                <Text>
+                  <Progress value={value} color={primaries[i]} />
+                  <Small key={i}>{'CMY'[i]}{value}</Small>
+                </Text>
+              </React.Fragment>
+            )
+          })}
+        </Box>
+        <Divider w={1} borderColor='blue' />
+        <Box p={2}>
+          <Subhead>{color.chroma.hex()}</Subhead>
+          {color.chroma.rgb().map((value, i) => {
+            const primaries = ['red', 'green', 'blue']
+
+            return (
+              <React.Fragment>
+                <Subhead>{primaries[i]}</Subhead>
+
+                <Text>
+                  <Progress value={value / 255} color={primaries[i]} />
+                  <Small key={i}>{'RGB'[i]}{value}</Small>
+                </Text>
+              </React.Fragment>
+            )
+          })}
+        </Box>
+        {/* <Box p={2}>
+          <Subhead>{'Swatches'}</Subhead>
+          {color.chroma.rgb().map((value, i) => {
+            return (
+              <React.Fragment>
+                <Subhead>RGB</Subhead>
+
+                <Text>
+                  <Progress value={value} color={['red', 'green', 'blue'][i]} />
+                  <Small key={i}>{'RGB'[i]}{value}</Small>
+                </Text>
+              </React.Fragment>
+            )
+          })}
+        </Box> */}
+      </Card>
+    </Box>
+  )
 }
